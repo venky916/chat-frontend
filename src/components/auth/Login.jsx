@@ -53,7 +53,7 @@ const Login = () => {
         },
       };
 
-      const { data } = await axios.post('/api/user/login', formData, config);
+      const { data } = await axios.post(`${process.env.BASE_URL}/api/user/login`, formData, config);
       toast({
         description: 'Login Successful',
       });

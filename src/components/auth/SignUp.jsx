@@ -116,7 +116,11 @@ const SignUp = () => {
         },
       };
 
-      const { data } = await axios.post('/api/user/register', formData, config);
+      const { data } = await axios.post(
+        `${process.env.BASE_URL}/api/user/register`,
+        formData,
+        config,
+      );
       toast({
         description: 'Registration Successful',
       });

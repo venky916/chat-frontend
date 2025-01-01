@@ -44,7 +44,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        '/api/chat/rename',
+        `${process.env.BASE_URL}/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -77,7 +77,10 @@ const UpdateGroupChatModal = ({
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `${process.env.BASE_URL}/api/user?search=${search}`,
+        config,
+      );
       console.log(data);
       setLoading(false);
       setSearchResult(data);
@@ -111,7 +114,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        `/api/chat/group-add`,
+        `${process.env.BASE_URL}/api/chat/group-add`,
         {
           chatId: selectedChat._id,
           userId: addingUser._id,
@@ -146,7 +149,7 @@ const UpdateGroupChatModal = ({
         },
       };
       const { data } = await axios.put(
-        `/api/chat/group-remove`,
+        `${process.env.BASE_URL}/api/chat/group-remove`,
         {
           chatId: selectedChat._id,
           userId: removingUser._id,

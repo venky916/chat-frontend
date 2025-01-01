@@ -99,7 +99,7 @@ const GroupChatModal = ({ isOpen, onClose }) => {
       //  );
       
       const { data } = await axios.post(
-        `/api/chat/group`,
+        `${process.env.BASE_URL}/api/chat/group`,
         {
           name: groupChatName,
           users: selectedUsers,

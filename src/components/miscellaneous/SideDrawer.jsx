@@ -61,7 +61,7 @@ const SideDrawer = () => {
     setChats,
     notification,
     setNotification,
-    setUser
+    setUser,
   } = ChatState();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -88,7 +88,10 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `${process.env.BASE_URL}/api/user?search=${search}`,
+        config,
+      );
       setSearchResult(data);
     } catch (error) {
       toast({
@@ -108,7 +111,11 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/chat`, { userId }, config);
+      const { data } = await axios.post(
+        `${process.env.BASE_URL}/api/chat`,
+        { userId },
+        config,
+      );
       // console.log(data);
 
       if (!chats.find((c) => c._id === data._id)) {

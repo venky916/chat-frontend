@@ -62,7 +62,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `${process.env.BASE_URL}/api/message/${selectedChat._id}`,
         config,
       );
       // console.log(data);
@@ -88,7 +88,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         };
         const { data } = await axios.post(
-          '/api/message',
+          `${process.env.BASE_URL}/api/message`,
           {
             content: newMessage,
             chatId: selectedChat,
@@ -141,32 +141,30 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     socket.on('stop typing', () => setIsTyping(false));
   }, []);
 
- 
-
   useEffect(() => {
     fetchMessages();
     selectedChatCompare = selectedChat;
-    console.log("checking fetch messages")
+    console.log('checking fetch messages');
   }, [selectedChat]);
   // console.log(notification, '-------------------------------')
 
-   useEffect(() => {
-     socket.on('message received', (newMessageReceived) => {
-       if (
-         !selectedChatCompare ||
-         selectedChatCompare._id !== newMessageReceived.chat._id
-       ) {
-         if (!notification.includes[newMessageReceived]) {
-           setNotification([newMessageReceived, ...notification]);
-           setFetchAgain(!fetchAgain);
-         }
-       } else {
-         // setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
-         setMessages([...messages, newMessageReceived]);
-         // console.log(messages);
-       }
-     });
-   });
+  useEffect(() => {
+    socket.on('message received', (newMessageReceived) => {
+      if (
+        !selectedChatCompare ||
+        selectedChatCompare._id !== newMessageReceived.chat._id
+      ) {
+        if (!notification.includes[newMessageReceived]) {
+          setNotification([newMessageReceived, ...notification]);
+          setFetchAgain(!fetchAgain);
+        }
+      } else {
+        // setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
+        setMessages([...messages, newMessageReceived]);
+        // console.log(messages);
+      }
+    });
+  });
 
   return (
     <>
@@ -198,9 +196,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
             {isTyping && (
-              <div>
-                {/* <Lottie width={70} options={defaultOptions} /> */}
-                loading ....
+              <div className="flex justify-start">
+                <Lottie width={70} options={defaultOptions} />
               </div>
             )}
             <div
