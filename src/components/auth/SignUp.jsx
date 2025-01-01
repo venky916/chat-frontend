@@ -98,7 +98,7 @@ const SignUp = () => {
 
   // Submit Handler
   const onSubmit = async (formData) => {
-    console.log('Form Submitted:', formData);
+    // console.log('Form Submitted:', formData);
     setLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
@@ -117,7 +117,7 @@ const SignUp = () => {
       };
 
       const { data } = await axios.post(
-        `${process.env.BASE_URL}/api/user/register`,
+        `${import.meta.env.VITE_BASE_URL}/api/user/register`,
         formData,
         config,
       );
@@ -128,8 +128,10 @@ const SignUp = () => {
       localStorage.setItem('user', JSON.stringify(data));
       navigate('/chat');
     } catch (error) {
+      console.log(error)
       toast({
-        description: error.response?.data?.message || 'Something went wrong!',
+
+        description: error|| 'Something went wrong!',
         status: 'error',
       });
       setLoading(false);

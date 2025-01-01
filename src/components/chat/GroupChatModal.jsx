@@ -43,7 +43,10 @@ const GroupChatModal = ({ isOpen, onClose }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/api/user?search=${search}`,
+        config,
+      );
       //   console.log(data);
       setLoading(false);
       setSearchResults(data);
@@ -90,16 +93,16 @@ const GroupChatModal = ({ isOpen, onClose }) => {
         },
       };
       //  const { data } = await axios.post(
-      //    `/api/chat/group`,
+      //    `${import.meta.env.VITE_BASE_URL}/api/chat/group`,
       //    {
       //      name: groupChatName,
       //      users: JSON.stringify(selectedUsers.map((u) => u._id)),
       //    },
       //    config,
       //  );
-      
+
       const { data } = await axios.post(
-        `${process.env.BASE_URL}/api/chat/group`,
+        `${import.meta.env.VITE_BASE_URL}/api/chat/group`,
         {
           name: groupChatName,
           users: selectedUsers,

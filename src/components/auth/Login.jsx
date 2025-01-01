@@ -44,7 +44,7 @@ const Login = () => {
 
   // Submit Handler
   const onSubmit = async (formData) => {
-    console.log('Form Submitted:', formData);
+    // console.log('Form Submitted:', formData);
     setLoading(true);
     try {
       const config = {
@@ -52,8 +52,11 @@ const Login = () => {
           'Content-type': 'application/json',
         },
       };
-
-      const { data } = await axios.post(`${process.env.BASE_URL}/api/user/login`, formData, config);
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/user/login`,
+        formData,
+        config,
+      );
       toast({
         description: 'Login Successful',
       });
@@ -61,8 +64,9 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(data));
       navigate('/chat');
     } catch (error) {
+      console.log(error)
       toast({
-        description: error.response?.data?.message || 'Something went wrong!',
+        description: error || 'Something went wrong!',
         status: 'error',
       });
       setLoading(false);
