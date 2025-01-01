@@ -119,7 +119,7 @@ const Login = () => {
           )}
         />
         <Button type="submit" className="w-full bg-blue-400">
-          Login
+          {!loading ? 'Login' : 'Loading...'}
         </Button>
 
         <Button
