@@ -136,7 +136,7 @@ const GroupChatModal = ({ isOpen, onClose }) => {
           </DialogTitle>
           <DialogDescription id="dialog-description"></DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">
           <Input
             type="text"
             placeholder="Chat Name"
@@ -147,10 +147,11 @@ const GroupChatModal = ({ isOpen, onClose }) => {
             type="text"
             placeholder="Add Users eg: John, Piyush, Jane"
             value={search}
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={ (e) => handleSearch(e.target.value) }
+            className="mt-2"
           />
         </div>
-        <div className="flex flex-wrap w-full">
+        <div className="flex flex-wrap">
           {selectedUsers.map((user) => (
             <UserBadgeItem
               key={user._id}

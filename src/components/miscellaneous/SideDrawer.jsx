@@ -41,7 +41,7 @@ import axios from 'axios';
 import ChatLoading from './ChatLoading';
 import UserListItem from '../user/UserListItem';
 import Spinner from './Spinner';
-import { getSender } from '@/utils/helper';
+import { generateRandomColor, getInitials, getSender } from '@/utils/helper';
 import NotificationBadge from './NotificationBadge';
 
 const SideDrawer = () => {
@@ -178,14 +178,21 @@ const SideDrawer = () => {
           </MenubarMenu>
         </Menubar>
         <Menubar>
-          <MenubarMenu>
+          <MenubarMenu className="py-3">
             <MenubarTrigger>
               <Avatar>
                 <AvatarImage
                   src={user.photoUrl}
                   className="hover:rounded-full rounded-full"
                 />
-                <AvatarFallback>MV</AvatarFallback>
+                <AvatarFallback
+                  style={{
+                    backgroundColor: generateRandomColor(),
+                    color: '#FFF', // Ensure the initials are visible
+                  }}
+                >
+                  {getInitials(user.name)}
+                </AvatarFallback>
               </Avatar>
               <FaChevronDown />
             </MenubarTrigger>
@@ -215,6 +222,11 @@ const SideDrawer = () => {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSearch();
+                }
+              }}
               placeholder="Search by name or email"
             />
             <Button type="button" onClick={handleSearch}>

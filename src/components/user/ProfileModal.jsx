@@ -25,7 +25,7 @@ const ProfileModal = ({ isOpen, onClose, user }) => {
             <img
               src={user.photoUrl}
               alt={user.name}
-              className="w-full h-full rounded-full"
+              className="rounded-full h-40 w-40"
             />
             <p>Email: {user.email}</p>
           </DialogDescription>

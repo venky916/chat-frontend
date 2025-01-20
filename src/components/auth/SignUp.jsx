@@ -23,7 +23,7 @@ const formSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(4, 'Min length of 4'),
   confirmPassword: z.string().min(4, 'Min length of 4'),
-  photoUrl: z.string().url('Photo URL must be a valid URL').optional(),
+  photoUrl: z.string().url('Photo URL must be a valid URL'),
 });
 
 const SignUp = () => {
@@ -47,10 +47,6 @@ const SignUp = () => {
 
   const { toast } = useToast();
   const navigate = useNavigate();
-
-  const btnToggle = () => {
-    setShow(() => !show);
-  };
 
   // Handle File Selection
   const handleFileChange = (event) => {
@@ -128,10 +124,9 @@ const SignUp = () => {
       localStorage.setItem('user', JSON.stringify(data));
       navigate('/chat');
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast({
-
-        description: error|| 'Something went wrong!',
+        description: error || 'Something went wrong!',
         status: 'error',
       });
       setLoading(false);

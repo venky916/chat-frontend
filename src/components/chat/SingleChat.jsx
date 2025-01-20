@@ -13,10 +13,9 @@ import Spinner from '../miscellaneous/Spinner';
 import ScrollableChat from './ScrollableChat';
 import animationData from '../../animations/typing.json';
 
-import io from 'socket.io-client';
 import Lottie from 'react-lottie';
+import { useSocket } from '@/context/SocketProvider';
 
-const ENDPOINT = 'http://localhost:5000';
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
@@ -28,6 +27,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     notification,
     setNotification,
   } = ChatState();
+  const { socket } = useSocket();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isGroupModal, setIsGroupModal] = useState(false);
 
@@ -131,8 +131,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    socket = io(ENDPOINT);
-    // console.log(socket);
     socket.emit('setup', user);
     socket.on('connected', () => {
       setSockedConnected(true);
@@ -159,9 +157,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           setFetchAgain(!fetchAgain);
         }
       } else {
-        // setMessages((prevMessages) => [...prevMessages, newMessageReceived]);
         setMessages([...messages, newMessageReceived]);
-        // console.log(messages);
       }
     });
   });
@@ -211,7 +207,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 onChange={typingHandler}
                 className="bg-white text-black font-workSans"
               />
-              <Button type="submit">
+              <Button
+                onClick={() => {
+                  if (newMessage) {
+                    sendMessage({ key: 'Enter' }); // Simulate an "Enter" keypress
+                  }
+                }}
+              >
                 <AiFillRightCircle />
               </Button>
             </div>

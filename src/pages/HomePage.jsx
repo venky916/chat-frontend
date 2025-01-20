@@ -29,16 +29,22 @@ const HomePage = () => {
     <div className="flex flex-col justify-center items-center max-w-xl mx-auto">
       {/* header */}
       <div className="bg-white flex justify-center items-center w-full border-[1px] rounded-lg mt-10  mb-5">
-        <h1 className="text-4xl font-workSans">Let's Chat</h1>
+        <h1 className="text-4xl font-workSans p-1">Let's Chat</h1>
       </div>
 
       <Card className="w-full bg-white p-4 rounded-lg border-1 font-workSans">
         <Tabs defaultValue="login">
           <TabsList className="w-full ">
-            <TabsTrigger value="login" className="w-full ">
+            <TabsTrigger
+              value="login"
+              className="w-full font-bold"
+            >
               Log In
             </TabsTrigger>
-            <TabsTrigger value="signup" className="w-full ">
+            <TabsTrigger
+              value="signup"
+              className="w-full font-bold"
+            >
               Sign Up
             </TabsTrigger>
           </TabsList>

@@ -16,6 +16,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../miscellaneous/Spinner';
 
 // Zod Schema for Validation
 const formSchema = z.object({
@@ -58,16 +59,18 @@ const Login = () => {
         config,
       );
       toast({
+        title: 'Success',
         description: 'Login Successful',
+        variant: 'success', // Use your custom variant here
       });
 
       localStorage.setItem('user', JSON.stringify(data));
       navigate('/chat');
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast({
         description: error || 'Something went wrong!',
-        status: 'error',
+        variant: 'destructive',
       });
       setLoading(false);
     }
@@ -123,7 +126,14 @@ const Login = () => {
           )}
         />
         <Button type="submit" className="w-full bg-blue-400">
-          {!loading ? 'Login' : 'Loading...'}
+          {!loading ? (
+            "Login"
+          ) : (
+            <>
+              <Spinner />
+              Loading...
+            </>
+          )}
         </Button>
 
         <Button

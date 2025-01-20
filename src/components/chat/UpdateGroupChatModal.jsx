@@ -64,6 +64,7 @@ const UpdateGroupChatModal = ({
     }
     setGroupChatName('');
   };
+
   const handleSearch = async (query) => {
     setSearch(query.trim());
     if (!query.trim()) {
@@ -167,6 +168,7 @@ const UpdateGroupChatModal = ({
       setLoading(false);
     }
   };
+  console.log(selectedChat?.groupAdmin)
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -174,19 +176,28 @@ const UpdateGroupChatModal = ({
         <DialogHeader>
           <DialogTitle className="justify-center font-workSans text-[35px]">
             {selectedChat?.chatName}
+            <h1 className="flex justify-start font-normal">
+              Admin:
+              <span className=" ml-2 font-bold text-sky-400">
+                {selectedChat?.groupAdmin?.name}
+              </span>
+            </h1>
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-3">
           <div className="w-full flex flex-wrap gap-1 ">
             {selectedChat &&
               selectedChat?.users &&
-              selectedChat?.users.map((u) => (
-                <UserBadgeItem
-                  key={u._id}
-                  user={u}
-                  handleFunction={() => handleRemove(u)}
-                />
-              ))}
+              selectedChat?.users.map(
+                (u) =>
+                  u?._id !== user._id && (
+                    <UserBadgeItem
+                      key={u._id}
+                      user={u}
+                      handleFunction={() => handleRemove(u)}
+                    />
+                  ),
+              )}
           </div>
           <div className="flex w-full  items-center space-x-2">
             <Input
