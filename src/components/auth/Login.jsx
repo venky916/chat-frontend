@@ -40,7 +40,7 @@ const Login = () => {
 
   const handleGuestCredentials = () => {
     form.setValue('email', 'guest@example.com');
-    form.setValue('password', 'Venkat@1234');
+    form.setValue('password', 'Guest@1234');
   };
 
   // Submit Handler
