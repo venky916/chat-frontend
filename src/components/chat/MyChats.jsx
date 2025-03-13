@@ -47,6 +47,8 @@ const MyChats = ({ fetchAgain }) => {
 
   const isUserOnline = (userId) => onlineUsers.includes(userId);
 
+  // console.log(chats,selectedChat)
+
   return (
     <>
       <div

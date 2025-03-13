@@ -183,7 +183,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </>
             )}
           </div>
-          <div className="flex flex-col justify-end p-3 bg-[#E8E8E8] w-full h-full rounded-lg overflow-y-hidden">
+          <div className="flex flex-col gap-1 justify-end p-3 bg-[#E8E8E8] w-full h-full rounded-lg overflow-y-hidden">
             {loading ? (
               <Spinner />
             ) : (
@@ -192,7 +192,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
             {isTyping && (
-              <div className="flex justify-start">
+              <div className="mr-auto mt-2">
                 <Lottie width={70} options={defaultOptions} />
               </div>
             )}

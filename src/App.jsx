@@ -1,12 +1,9 @@
-import { Route, Routes } from "react-router-dom"
-import { Button } from "./components/ui/button"
-import HomePage from "./pages/HomePage"
-import ChatPage from "./pages/ChatPage"
-import ChatProvider from "./context/ChatProvider"
-
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import ChatPage from './pages/ChatPage';
+import ChatProvider from './context/ChatProvider';
 
 function App() {
-
   return (
     <div className="bg-img bg-cover h-screen z-0">
       <ChatProvider>
@@ -19,4 +16,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

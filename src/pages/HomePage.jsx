@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Login from '@/components/auth/Login';
 import SignUp from '@/components/auth/SignUp';
@@ -15,16 +8,16 @@ import { ChatState } from '@/context/ChatProvider';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const {setUser} = ChatState()
+  const { setUser } = ChatState();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem('user'));
     setUser(user);
     if (user) {
-      navigate('/chat')
+      navigate('/chat');
     }
-  }, [navigate])
-  
+  }, [navigate]);
+
   return (
     <div className="flex flex-col justify-center items-center max-w-xl mx-auto">
       {/* header */}
@@ -35,16 +28,10 @@ const HomePage = () => {
       <Card className="w-full bg-white p-4 rounded-lg border-1 font-workSans">
         <Tabs defaultValue="login">
           <TabsList className="w-full ">
-            <TabsTrigger
-              value="login"
-              className="w-full font-bold"
-            >
+            <TabsTrigger value="login" className="w-full font-bold">
               Log In
             </TabsTrigger>
-            <TabsTrigger
-              value="signup"
-              className="w-full font-bold"
-            >
+            <TabsTrigger value="signup" className="w-full font-bold">
               Sign Up
             </TabsTrigger>
           </TabsList>

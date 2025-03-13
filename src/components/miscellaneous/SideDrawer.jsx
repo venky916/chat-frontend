@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaSearch, FaChevronDown } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 
@@ -49,7 +49,6 @@ const SideDrawer = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
-
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false); // Control Sheet state
 
@@ -93,6 +92,7 @@ const SideDrawer = () => {
         config,
       );
       setSearchResult(data);
+      // console.log(searchResult)
     } catch (error) {
       toast({
         description: 'Failed to load the search results',
